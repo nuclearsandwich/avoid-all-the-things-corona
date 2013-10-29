@@ -1,50 +1,16 @@
 -- # Avoid All the Things! #
 
 local widget = require("widget")
-local scoreboard = require("scoreboard")
 local sourcefonts = require("sourcefonts")
 local newObstacleTimerID, scoreIncrementTimerID
 local score
 local obstacleImages = { "icecream.png", "yarn.png", "penguin.png" }
 local obstacles = {}
-local topScores = scoreboard.newScoreboard()
 
 local background = display.newImageRect("starsbg.jpg", display.contentWidth, display.contentHeight)
 background:setReferencePoint(display.CenterReferencePoint)
 background.x  = display.contentCenterX
 background.y  = display.contentCenterY
-
-local displayScoreboard = display.newText({
-	text = "",
-	x = 200,
-	y = 200,
-	font = sourcefonts.SourceCodeBlack,
-	fontSize = 48,
-})
-displayScoreboard:setTextColor(255, 255, 255)
-
-displayScoreboard.show = function(displayText, scores)
-	local newText = "poop"
-	for i = 1, #scores do
-		newText = newText ..
-			i .. ".     " .. scores[i].name .. "     " .. scores[i].score .. "\n"
-	end
-	displayText.text = newText
-	displayText.isVisible = true
-end
-
-displayScoreboard.hide = function(displayText)
-	displayText.isVisible = false
-end
-
-topScores.scores = {
-	{name="Steven!", score=50},
-	{name="Mike", score=30},
-	{name="Joe", score=5},
-	{name="Mickey", score=3},
-	{name="Mickey", score=3},
-}
-topScores:save()
 
 local ship = display.newImageRect("ship.png", 100, 100)
 ship:setReferencePoint(display.CenterReferencePoint)
@@ -136,7 +102,7 @@ local eachFrame = function()
 end
 
 local startButton = widget.newButton({
-	top = display.contentCenterY - 50, 
+	top = display.contentCenterY - 50,
 	left = display.contentCenterX - 100,
 	label = "Start Game",
 	width = 200,
@@ -168,6 +134,7 @@ local incrementScore = function()
 end
 
 start = function()
+	background:toBack()
 	score = 0
 	displayScore.text = score
 	startButton:hide()
