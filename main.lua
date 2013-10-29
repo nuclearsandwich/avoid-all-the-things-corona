@@ -2,6 +2,7 @@
 
 local widget = require("widget")
 local scoreboard = require("scoreboard")
+local sourcefonts = require("sourcefonts")
 local newObstacleTimerID, scoreIncrementTimerID
 local score
 local obstacleImages = { "icecream.png", "yarn.png", "penguin.png" }
@@ -17,8 +18,8 @@ local displayScoreboard = display.newText({
 	text = "",
 	x = 200,
 	y = 200,
-	font = native.systemFont,
-	fontSize = 32,
+	font = sourcefonts.SourceCodeBlack,
+	fontSize = 48,
 })
 displayScoreboard:setTextColor(255, 255, 255)
 
@@ -155,8 +156,8 @@ local displayScore = display.newText({
 	text = "",
 	x = 50,
 	y = 50,
-	font = native.systemFont,
-	fontSize = 16,
+	font = sourcefonts.SourceCodeBlack,
+	fontSize = 48,
 })
 
 displayScore:setTextColor(255, 255, 255)
